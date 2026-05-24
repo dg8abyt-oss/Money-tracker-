@@ -51,14 +51,13 @@ export default function Dashboard() {
   const [manualBaseline, setManualBaseline] = useState<{ amount: number; date: string } | null>(null);
   const [isAdjusting, setIsAdjusting] = useState(false);
   const [tempAmount, setTempAmount] = useState('');
-  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    setIsMounted(true);
     const saved = localStorage.getItem('lunchmoney_baseline');
     if (saved) {
       try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setManualBaseline(JSON.parse(saved));
       } catch (e) {
         console.error('Failed to parse baseline', e);
